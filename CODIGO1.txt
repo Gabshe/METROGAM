@@ -286,3 +286,34 @@ CREATE (ochomogo)-[:RUTA {distancia_km: 6.4}]->(tresrios),
 (tec)-[:RUTA {distancia_km: 1.5}]->(basilica),
 (lankester)-[:RUTA {distancia_km: 4.4}]->(tec),
 (paraiso)-[:RUTA {distancia_km: 3.2}]->(lankester)
+
+//Algoritmo de Dijkstra
+CALL gds.version()  // Verificar que está instalado GDS
+
+CALL gds.graph.project(
+  'metroGraph',              // Nombre del grafo proyectado
+  'Estacion',                // Nodos
+  {
+    RUTA: {
+      type: 'RUTA',          // Relaciones (rutas)
+      properties: 'distancia_km' // La propiedad (distancia)
+    }
+  }
+)
+
+//Se calcula la ruta más corta con Dijkstra
+CALL gds.graph.list();  // Se verifica que se creó el grafo
+
+MATCH (source:Estacion {nombre: 'Plaza de la Cultura'}),
+      (target:Estacion {nombre: 'Aeropuerto Juan Santamaría'})
+CALL gds.shortestPath.dijkstra.stream('metroGraph', {
+  sourceNode: id(source),
+  targetNode: id(target),
+  relationshipWeightProperty: 'distancia_km'
+})
+YIELD index, sourceNode, targetNode, totalCost, nodeIds, costs, path
+RETURN 
+  gds.util.asNode(sourceNode).nombre AS Estacion_Inicial,
+  gds.util.asNode(targetNode).nombre AS Estacion_Final,
+  totalCost AS Distancia_Total_km,
+  [nodeId IN nodeIds | gds.util.asNode(nodeId).nombre] AS Ruta
