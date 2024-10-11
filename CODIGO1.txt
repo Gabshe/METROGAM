@@ -1,0 +1,176 @@
+﻿CREATE (sabana:Estacion {nombre: "Parque Metropolitano La Sabana"}),
+       (cultura:Estacion {nombre: "Plaza de la Cultura"}),
+       (democracia:Estacion {nombre: "Plaza de la Democracia"}),
+       (nacional:Estacion {nombre: "Parque Nacional"}),
+       (gonzalez:Estacion {nombre: "Plaza González Víquez"}),
+       (paz:Estacion {nombre: "Parque Metropolitano de la Paz"}),
+       (desampa:Estacion {nombre: "Desamparados"}),
+       (sanraSJ:Estacion {nombre: "San Rafael Abajo"}),
+       (alajuelita:Estacion {nombre: "Alajuelita"}),
+       (auroraALA:Estacion {nombre: "La Aurora de Alajuela"})
+
+
+CREATE  (escazu:Estacion {nombre: "Escazú"}),
+       (zoo:Estacion {nombre: "Refugio Animal Costa Rica"}),
+       (santaana:Estacion {nombre: "Parroquia de Santa Ana"}),
+       (pozos:Estacion {nombre: "Pozos de Santa Ana"}),
+       (sanraALA:Estacion {nombre: "San Rafael de Alajuela"}),
+       (viva:Estacion {nombre: "Parque Viva"}),
+       (ciruelas:Estacion {nombre: "Ciruelas"}),
+       (coyol:Estacion {Nombre: "Coyol"}),
+       (SJAlajuela:Estacion {nombre: "San José de Alajuela"}),
+       (alajuela:Estacion {nombre: "Alajuela"})
+
+
+CREATE (aeropuerto:Estacion {nombre: "Aeropuerto Juan Santamaría"}),
+       (ribera:Estacion {nombre: "La Ribera"}), 
+        (aurora:Estacion {nombre: "La Aurora de Heredia"}),
+       (sanfran:Estacion {nombre: "San Francisco"}),
+       (heredia:Estacion {nombre: "Heredia"}),
+       (una:Estacion {nombre: "Universidad Nacional"}),
+       (sanpablo:Estacion {nombre: "San Pablo"}),
+       (santodomingo:Estacion {nombre: "Santo Domingo"}),
+       (tibas:Estacion {nombre: "Tibás"})
+
+
+CREATE (jardines:Estacion {nombre: "Jardines"}),
+       (sanvicente:Estacion {nombre: "San Vicente"}), 
+       (guada:Estacion {nombre: "Guadalupe"}), 
+       (escalante:Estacion {nombre: "Escalante"}),
+       (ucr:Estacion {nombre: "Universidad de Costa Rica"}),
+       (freses:Estacion {nombre: "Freses"}),
+       (granadilla:Estacion {nombre: "Iglesia de Granadilla"}),
+       (pinares:Estacion {nombre: "Pinares"}),
+       (tresrios:Estacion {nombre: "Tres Ríos"})
+
+
+CREATE (ochomogo:Estacion {nombre: "Ochomogo"}),
+       (loyola:Estacion {nombre: "Loyola"}),
+       (basilica:Estacion {nombre: "Basílica de la Virgen de los Ángeles"}),
+       (tec:Estacion {nombre: "Tecnológico de Costa Rica"}), 
+       (lankester:Estacion {nombre: "Jardín Botánico Lankester UCR"}),
+       (paraiso:Estacion {nombre: "Paraíso"})
+
+
+MATCH (sabana:Estacion {nombre: "Parque Metropolitano La Sabana"}),
+          (cultura:Estacion {nombre: "Plaza de la Cultura"}),
+          (democracia:Estacion {nombre: "Plaza de la Democracia"}),
+          (nacional:Estacion {nombre: "Parque Nacional"}),
+          (gonzalez:Estacion {nombre: "Plaza González Víquez"}),
+          (paz:Estacion {nombre: "Parque Metropolitano de la Paz"})
+CREATE (sabana)-[:RUTA {distancia_km: 4.2}]->(cultura),
+           (cultura)-[:RUTA {distancia_km: 0.6}]->(democracia),
+           (democracia)-[:RUTA {distancia_km: 0.27}]->(nacional),
+           (nacional)-[:RUTA {distancia_km: 1.5}]->(gonzalez),
+           (gonzalez)-[:RUTA {distancia_km: 1.6}]->(paz)
+
+
+MATCH (paz:Estacion {nombre: "Parque Metropolitano de la Paz"}),
+          (desampa:Estacion {nombre: "Desamparados"}),
+          (sanraSJ:Estacion {nombre: "San Rafael Abajo"}),
+          (alajuelita:Estacion {nombre: "Alajuelita"})
+CREATE (paz)-[:RUTA {distancia_km: 2.5}]->(desampa),
+           (desampa)-[:RUTA {distancia_km: 3.3}]->(sanraSJ),
+           (sanraSJ)-[:RUTA {distancia_km: 2.4}]->(alajuelita)
+
+
+MATCH (alajuelita:Estacion {nombre: "Alajuelita"}),
+          (auroraALA:Estacion {nombre: "La Aurora de Alajuela"}),
+          (escazu:Estacion {nombre: "Escazú"}),
+          (zoo:Estacion {nombre: "Refugio Animal Costa Rica"})
+CREATE (alajuelita)-[:RUTA {distancia_km: 3.6}]->(auroraALA),
+           (auroraALA)-[:RUTA {distancia_km: 2.7}]->(escazu),
+           (escazu)-[:RUTA {distancia_km: 3.5}]->(zoo)
+
+
+MATCH (zoo:Estacion {nombre: "Refugio Animal Costa Rica"}),
+          (santaana:Estacion {nombre: "Parroquia de Santa Ana"}),
+          (pozos:Estacion {nombre: "Pozos de Santa Ana"}),
+          (sanraALA:Estacion {nombre: "San Rafael de Alajuela"})
+CREATE (zoo)-[:RUTA {distancia_km: 2.6}]->(santaana),
+           (santaana)-[:RUTA {distancia_km: 3}]->(pozos),
+           (pozos)-[:RUTA {distancia_km: 4.5}]->(sanraALA)
+
+
+MATCH (sanraALA:Estacion {nombre: "San Rafael de Alajuela"}),
+          (viva:Estacion {nombre: "Parque Viva"}),
+          (ciruelas:Estacion {nombre: "Ciruelas"}),
+          (coyol:Estacion {nombre: "Coyol"}),
+          (SJAlajuela:Estacion {nombre: "San José de Alajuela"})
+CREATE (sanraALA)-[:RUTA {distancia_km: 4.7}]->(viva),
+           (viva)-[:RUTA {distancia_km: 2.3}]->(ciruelas),
+           (ciruelas)-[:RUTA {distancia_km: 5.5}]->(coyol),
+           (coyol)-[:RUTA {distancia_km: 1.5}]->(SJAlajuela)
+
+
+MATCH (SJAlajuela:Estacion {nombre: "San José de Alajuela"}),
+          (alajuela:Estacion {nombre: "Alajuela"}),
+          (aeropuerto:Estacion {nombre: "Aeropuerto Juan Santamaría"}),
+          (ribera:Estacion {nombre: "La Ribera"}),
+          (aurora:Estacion {nombre: "La Aurora de Heredia"})
+CREATE (SJAlajuela)-[:RUTA {distancia_km: 3.5}]->(alajuela),
+           (alajuela)-[:RUTA {distancia_km: 2.3}]->(aeropuerto),
+           (aeropuerto)-[:RUTA {distancia_km: 5.7}]->(ribera),
+           (ribera)-[:RUTA {distancia_km: 5}]->(aurora)
+
+
+MATCH (aurora:Estacion {nombre: "La Aurora de Heredia"}),
+          (sanfran:Estacion {nombre: "San Francisco"}),
+          (heredia:Estacion {nombre: "Heredia"}),
+          (una:Estacion {nombre: "Universidad Nacional"}),
+          (sanpablo:Estacion {nombre: "San Pablo"})
+CREATE (aurora)-[:RUTA {distancia_km: 2.3}]->(sanfran),
+           (sanfran)-[:RUTA {distancia_km: 2}]->(heredia),
+           (heredia)-[:RUTA {distancia_km: 1.2}]->(una),
+           (una)-[:RUTA {distancia_km: 2.4}]->(sanpablo)
+
+
+MATCH (sanpablo:Estacion {nombre: "San Pablo"}),
+          (santodomingo:Estacion {nombre: "Santo Domingo"}),
+          (tibas:Estacion {nombre: "Tibás"}),
+          (jardines:Estacion {nombre: "Jardines"})
+CREATE (sanpablo)-[:RUTA {distancia_km: 2.4}]->(santodomingo),
+           (santodomingo)-[:RUTA {distancia_km: 3.4}]->(tibas),
+           (tibas)-[:RUTA {distancia_km: 1.7}]->(jardines)
+
+
+MATCH (jardines:Estacion {nombre: "Jardines"}),
+          (sanvicente:Estacion {nombre: "San Vicente"}),
+          (guada:Estacion {nombre: "Guadalupe"}),
+          (nacional:Estacion {nombre: "Parque Nacional"})
+CREATE (jardines)-[:RUTA {distancia_km: 2.4}]->(sanvicente),
+           (sanvicente)-[:RUTA {distancia_km: 2.1}]->(guada),
+           (guada)-[:RUTA {distancia_km: 2.8}]->(nacional)
+
+
+MATCH (nacional:Estacion {nombre: "Parque Nacional"}),
+          (escalante:Estacion {nombre: "Escalante"}),
+          (ucr:Estacion {nombre: "Universidad de Costa Rica"}),
+          (freses:Estacion {nombre: "Freses"})
+CREATE (nacional)-[:RUTA {distancia_km: 0.75}]->(escalante),
+           (escalante)-[:RUTA {distancia_km: 2}]->(ucr),
+           (ucr)-[:RUTA {distancia_km: 2.2}]->(freses)
+
+
+MATCH (freses:Estacion {nombre: "Freses"}),
+          (granadilla:Estacion {nombre: "Iglesia de Granadilla"}),
+          (pinares:Estacion {nombre: "Pinares"}),
+          (tresrios:Estacion {nombre: "Tres Ríos"})
+CREATE (freses)-[:RUTA {distancia_km: 3.5}]->(granadilla),
+           (granadilla)-[:RUTA {distancia_km: 4.2}]->(pinares),
+           (pinares)-[:RUTA {distancia_km: 3.8}]->(tresrios)
+
+
+MATCH (tresrios:Estacion {nombre: "Tres Ríos"}),
+          (ochomogo:Estacion {nombre: "Ochomogo"}),
+          (loyola:Estacion {nombre: "Loyola"}),
+          (basilica:Estacion {nombre: "Basílica de la Virgen de los Ángeles"}),
+          (tec:Estacion {nombre: "Tecnológico de Costa Rica"}),
+          (lankester:Estacion {nombre: "Jardín Botánico Lankester UCR"}),
+          (paraiso:Estacion {nombre: "Paraíso"})
+CREATE (tresrios)-[:RUTA {distancia_km: 6.4}]->(ochomogo),
+           (ochomogo)-[:RUTA {distancia_km: 2.9}]->(loyola),
+           (loyola)-[:RUTA {distancia_km: 3.9}]->(basilica),
+           (basilica)-[:RUTA {distancia_km: 1.5}]->(tec),
+           (tec)-[:RUTA {distancia_km: 4.4}]->(lankester),
+           (lankester)-[:RUTA {distancia_km: 3.2}]->(paraiso)
