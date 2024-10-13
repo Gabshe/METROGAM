@@ -1,0 +1,20 @@
+Pasos para hacer la instalación y uso de MemGraph (usando Docker):
+
+1. Descarga e instalación de Docker en su página oficial:
+
+https://www.docker.com/
+
+Descargar la versión más reciente según las especificaciones de la computadora y su Sistema operative. 
+
+2. Una vez que se tenga Docker instalado se puede bajar el container para ejecutar memgraph, más especfícamente MemGrahp Lab que es una versión más amigable con el Usuario y más intuitiva en general. 
+
+Los pasos para bajarlo son: 
+
+a. Abrir la terminal en la parte inferior derecha. 
+b. Copiar y ejecutar uno por uno los siguientes códigos:
+	i. docker run -p7687:7687 -p3000:3000 memgraph/memgraph
+	ii. iwr https://windows.memgraph.com | iex
+
+3. Probar en cualquier buscador con la dirección 	http://localhost:3000
+Debería abrir MemgraphLab y conectar con la base. 
+
