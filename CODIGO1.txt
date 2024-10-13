@@ -1,7 +1,6 @@
 ﻿CREATE (sabana:Estacion {nombre: "Parque Metropolitano La Sabana"}),
        (cultura:Estacion {nombre: "Plaza de la Cultura"}),
        (democracia:Estacion {nombre: "Plaza de la Democracia"}),
-       (nacional:Estacion {nombre: "Parque Nacional"}),
        (gonzalez:Estacion {nombre: "Plaza González Víquez"}),
        (paz:Estacion {nombre: "Parque Metropolitano de la Paz"}),
        (desampa:Estacion {nombre: "Desamparados"}),
@@ -55,13 +54,11 @@ CREATE (ochomogo:Estacion {nombre: "Ochomogo"}),
 MATCH (sabana:Estacion {nombre: "Parque Metropolitano La Sabana"}),
           (cultura:Estacion {nombre: "Plaza de la Cultura"}),
           (democracia:Estacion {nombre: "Plaza de la Democracia"}),
-          (nacional:Estacion {nombre: "Parque Nacional"}),
           (gonzalez:Estacion {nombre: "Plaza González Víquez"}),
           (paz:Estacion {nombre: "Parque Metropolitano de la Paz"})
 CREATE (sabana)-[:RUTA {distancia_km: 4.2}]->(cultura),
            (cultura)-[:RUTA {distancia_km: 0.6}]->(democracia),
-           (democracia)-[:RUTA {distancia_km: 0.27}]->(nacional),
-           (nacional)-[:RUTA {distancia_km: 1.5}]->(gonzalez),
+           (democracia)-[:RUTA {distancia_km: 1.2}]->(gonzalez),
            (gonzalez)-[:RUTA {distancia_km: 1.6}]->(paz)
 
 
@@ -137,17 +134,17 @@ CREATE (sanpablo)-[:RUTA {distancia_km: 2.4}]->(santodomingo),
 MATCH (jardines:Estacion {nombre: "Jardines"}),
           (sanvicente:Estacion {nombre: "San Vicente"}),
           (guada:Estacion {nombre: "Guadalupe"}),
-          (nacional:Estacion {nombre: "Parque Nacional"})
+          (democracia:Estacion {nombre: "Plaza de la Democracia"})
 CREATE (jardines)-[:RUTA {distancia_km: 2.4}]->(sanvicente),
            (sanvicente)-[:RUTA {distancia_km: 2.1}]->(guada),
-           (guada)-[:RUTA {distancia_km: 2.8}]->(nacional)
+           (guada)-[:RUTA {distancia_km: 2.9}]->(democracia)
 
 
-MATCH (nacional:Estacion {nombre: "Parque Nacional"}),
+MATCH (democracia:Estacion {nombre: "Plaza de la Democracia"}),,
           (escalante:Estacion {nombre: "Escalante"}),
           (ucr:Estacion {nombre: "Universidad de Costa Rica"}),
           (freses:Estacion {nombre: "Freses"})
-CREATE (nacional)-[:RUTA {distancia_km: 0.75}]->(escalante),
+CREATE (democracia)-[:RUTA {distancia_km: 1.1}]->(escalante),
            (escalante)-[:RUTA {distancia_km: 2}]->(ucr),
            (ucr)-[:RUTA {distancia_km: 2.2}]->(freses)
 
@@ -178,13 +175,11 @@ CREATE (tresrios)-[:RUTA {distancia_km: 6.4}]->(ochomogo),
 MATCH (sabana:Estacion {nombre: "Parque Metropolitano La Sabana"}),
 (cultura:Estacion {nombre: "Plaza de la Cultura"}),
 (democracia:Estacion {nombre: "Plaza de la Democracia"}),
-(nacional:Estacion {nombre: "Parque Nacional"}),
 (gonzalez:Estacion {nombre: "Plaza González Víquez"}),
 (paz:Estacion {nombre: "Parque Metropolitano de la Paz"})
 CREATE (cultura)-[:RUTA {distancia_km: 4.2}]->(sabana),
 (democracia)-[:RUTA {distancia_km: 0.6}]->(cultura),
-(nacional)-[:RUTA {distancia_km: 0.27}]->(democracia),
-(gonzalez)-[:RUTA {distancia_km: 1.5}]->(nacional),
+(democracia)-[:RUTA {distancia_km: 1.2}]->(gonzalez),
 (paz)-[:RUTA {distancia_km: 1.6}]->( gonzalez)
 
 MATCH (paz:Estacion {nombre: "Parque Metropolitano de la Paz"}),
@@ -252,16 +247,16 @@ CREATE (santodomingo)-[:RUTA {distancia_km: 2.4}]->(sanpablo),
 MATCH (jardines:Estacion {nombre: "Jardines"}),
 (sanvicente:Estacion {nombre: "San Vicente"}),
 (guada:Estacion {nombre: "Guadalupe"}),
-(nacional:Estacion {nombre: "Parque Nacional"})
+(democracia:Estacion {nombre: "Plaza de la Democracia"})
 CREATE (sanvicente)-[:RUTA {distancia_km: 2.4}]->(jardines),
 (guada)-[:RUTA {distancia_km: 2.1}]->(sanvicente),
-(nacional)-[:RUTA {distancia_km: 2.8}]->(guada)
+(democracia)-[:RUTA {distancia_km: 2.8}]->(guada)
 
-MATCH (nacional:Estacion {nombre: "Parque Nacional"}),
+MATCH (democracia:Estacion {nombre: "Plaza de la Democracia"}),
 (escalante:Estacion {nombre: "Escalante"}),
 (ucr:Estacion {nombre: "Universidad de Costa Rica"}),
 (freses:Estacion {nombre: "Freses"})
-CREATE (escalante)-[:RUTA {distancia_km: 0.75}]->(nacional),
+CREATE (escalante)-[:RUTA {distancia_km: 0.75}]->(democracia),
 (ucr)-[:RUTA {distancia_km: 2}]->(escalante),
 (freses)-[:RUTA {distancia_km: 2.2}]->(ucr)
 
