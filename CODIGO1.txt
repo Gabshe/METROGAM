@@ -140,7 +140,7 @@ CREATE (jardines)-[:RUTA {distancia_km: 2.4}]->(sanvicente),
            (guada)-[:RUTA {distancia_km: 2.9}]->(democracia)
 
 
-MATCH (democracia:Estacion {nombre: "Plaza de la Democracia"}),,
+MATCH (democracia:Estacion {nombre: "Plaza de la Democracia"}),
           (escalante:Estacion {nombre: "Escalante"}),
           (ucr:Estacion {nombre: "Universidad de Costa Rica"}),
           (freses:Estacion {nombre: "Freses"})
